@@ -44,7 +44,7 @@ namespace DatingApp.api
                     opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; // See note 1 up top
                 });
             services.AddCors();
-            services.AddAutoMapper();
+            services.AddAutoMapper(); //use Mapper.Reset() before this if updating database --> https://github.com/AutoMapper/AutoMapper.Extensions.Microsoft.DependencyInjection/issues/49
             services.AddTransient<Seed>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IDatingRepository, DatingRepository>();
@@ -65,6 +65,7 @@ namespace DatingApp.api
         {
             if (env.IsDevelopment())
             {
+
                 app.UseDeveloperExceptionPage();
             }
             else
